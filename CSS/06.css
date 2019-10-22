@@ -1,0 +1,12 @@
+.square{
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    position: relative;
+}
+.relative-box{
+    position: relative;
+    background: navy;
+    top: 10px;
+    left: 10px;
+}
