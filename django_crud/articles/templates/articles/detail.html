@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center">DETAIL</h1>
+    <h2>{{ article.pk }}번째 글</h2>
+    <hr>
+    <p>제목: {{ article.title }}</p>
+    <p>내용: {{ article.content }}</p>
+    <p>작성 시각: {{ article.created_at|date:"SHORT_DATE_FORMAT" }}</p>
+    <p>수정 시각: {{ article.updated_at|date:"M, j, Y" }}</p>
+    <hr>
+    <!--변경전 /articles/{{article.pk}}//comments_create/ -->
+    <form action="{%url 'articles:comments_create' article.pk%}" method="POST">
+        {%csrf_token%}
+        <label for="comment">comment</label>
+        <input type="text" name="content" id="comment">
+        <input type="submit" value="submit">
+    </form>
+    <!--댓글 개수-->
+    {{comments|length}}
+    {{article.comments.all|length}}
+    
+    <!-- 댓글 목록 -->
+    {%for comment in comments%}
+        <li>{{comment.content}}</li>
+        <form action="{%url 'articles:comments_delete' article.pk comment.pk%}" method="POST">
+            {%csrf_token%}
+            <input type="submit"  value="삭제">        
+        </form>
+        {%empty%}
+        <p><strong>댓글이 없어요... ㅠ_ㅠ</strong></p>
+    {%endfor%}
+    <a href="{% url 'articles:update' article.pk %}">[UPDATE]</a>
+    <!-- <a href="{% url 'articles:delete' article.pk %}" onclick="return confirm('삭제하시겠어요?')">[DELETE]</a> -->
+    <form action="{% url 'articles:delete' article.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="[DELETE]">
+    </form>
+    <a href="{% url 'articles:index' %}">[BACK]</a>
+{% endblock %}

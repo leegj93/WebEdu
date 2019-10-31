@@ -1,11 +1,12 @@
-{%extends 'base.html'%}
+<!-- templates/articles/new.html -->
+{% extends 'base.html' %}
 
-{%block content%}
-    <h1 class="text-center">New</h1>
-    <form action="/articles/create/" method="POST">
+{% block content %}
+    <h1 class="text-center">NEW</h1>
+    <form action="{% url 'articles:create' %}" method="POST">
         {% csrf_token %}
-        <input type="text" name="title"><<br>
-        <textarea name="content" rows="10" cols="30"></textarea><br>
+        <input type="text" name="title"><br>
+        <textarea name="content" id="" cols="30" rows="10"></textarea><br>
         <input type="submit" value="submit">
     </form>
-{%endblock%}
+{% endblock %}
