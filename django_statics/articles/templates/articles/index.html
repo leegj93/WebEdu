@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block body%}
+    <h1>Article</h1>
+    <a href="{%url 'articles:create'%}">[게시글 작성하기]</a>
+    {%for article in articles%}
+        <h1>제목 :{{article.title}}</h1>
+       
+        <img src="{{article.image.url}}" alt="">
+        <a href="{%url 'articles:detail' article.pk%}">[Detail]</a>
+       
+        <hr>
+    {%endfor%}
+{%endblock%}

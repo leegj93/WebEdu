@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center">DETAIL</h1>
+    <h2>{{ movie.pk }}번째 글</h2>
+    <hr>
+    <p>제목: {{ movie.title }}</p>
+    <p>영문 제목: {{movie.title_en}}</p>
+    <p>누적 관객수: {{ movie.audience }}</p>
+    <p>{{movie.genre}}</p>
+    <p>{{movie.watch_grade}}</p>
+    <p>{{movie.score}}</p>
+    <img src="{{movie.poster_url}}">
+    <p>{{movie.description}}</p>
+    
+    <a href="{% url 'movies:update' movie.pk %}">[UPDATE]</a>
+    <!-- <a href="{% url 'movies:delete' movie.pk %}" onclick="return confirm('삭제하시겠어요?')">[DELETE]</a> -->
+    <form action="{% url 'movies:delete' movie.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="[DELETE]">
+    </form>
+    <a href="{% url 'movies:index' %}">[BACK]</a>
+{% endblock %}

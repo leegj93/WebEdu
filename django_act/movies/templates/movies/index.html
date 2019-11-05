@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center">Movie</h1>
+    {% for movie in movies %}
+    <p>영화 번호: {{ movie.pk }}</p>
+    <p>영화 제목: <a href="{% url 'movies:detail' movie.pk %}">{{ movie.title }}</a></p>
+    <p>영화 내용: {{ movie.score }}</p>
+    
+    {% endfor %}
+{% endblock %}
