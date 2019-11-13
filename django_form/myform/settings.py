@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'accounts',
     'articles',
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +40,26 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+    'django_extensions',
+    #allauth를 쓰기 위해(소셜 로그인용)
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    #카카오 추가
+    'allauth.socialaccount.providers.kakao',
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,3 +144,11 @@ STATIC_URL = '/static/'
 # 로그인 하지 않은 사용자의 경우 LOGIN_URL에 설정된
 # 문자열 기반 절대 경로로 리다이렉트 된다.
 # LOGIN_URL = '/custom_appname/login/'
+
+
+AUTH_USER_MODEL ='accounts.User'
+
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL= 'articles:index'

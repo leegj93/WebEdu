@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@er^2kh8nk-g6mi+)vx$lr^pm&_uad+^7*kljam2^bds@o2^+@'
+SECRET_KEY = '@d0w^^b2ro9m5wv!mpy-3t$gn0nlfer=ajf%u^3j0asm+zx@5b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'imagekit'
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -120,12 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR, 'my_images')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'my_images'),
 ]
-#static_url과 비슷, 업로드 된 파일의 주소를 만들어 준다.
-# 실제업로드 된 파일의 경로를 의미하는 것은 아니다.
-# 가상주소와 같음
-MEDIA_URL ='/media/'
-# 파일의 업로드가 끝나면 파일을 저장하는 경로
-MEDIA_ROOT= os.path.join(BASE_DIR,'media')
+
+# STATIC_URL과 비슷. 업로드 된 파일의 주소를 만들어 준다.
+# 실제 업로드 된 파일의 경로를 의미하는 것은 아니다.
+MEDIA_URL = '/media/'
+
+# 업로드 된 파일을 저장하는 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

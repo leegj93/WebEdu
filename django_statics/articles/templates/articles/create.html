@@ -1,12 +1,16 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
-{%block body%}
+{% block body %}
     <form action="{% url 'articles:create' %}" method="POST" enctype="multipart/form-data">
-        {%csrf_token%}
+        {% csrf_token %}
         <input type="text" name="title"><br>
         <input type="text" name="content"><br>
-        <input type="file" name="image"><br>
+        <div class="custom-file w-50">
+            <input id="custom-file-input" name="image" type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+            <div class="ml-3 file-name"></div>
+        </div>
+        <br>
         <input type="submit">
     </form>
-
-{%endblock%}
+{% endblock %}
