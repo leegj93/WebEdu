@@ -4,13 +4,18 @@ from .models import Article, Comment, Hashtag
 from .forms import ArticleForm, CommentForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from IPython import embed
 import hashlib
 from django.contrib.auth import get_user_model
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
     articles = Article.objects.all()
+    paginator= Paginator(articles, 3) #페이지 내에 출력할 article 수 설정
+    page= request.GET.get('page') # 페이지 번호
+    articles = paginatorl.get_page(page) # 해당 번호의 페이지에서 게시글 가져오기
     context = {
         'articles': articles,
     }
@@ -141,3 +146,17 @@ def hashtag(request, hash_pk):
     articles= hashtag.article_set.order_by("-pk")
     context={'hashtag':hashtag, 'articles':articles}
     return render(request, 'articles/hashtag.html', context)
+
+def search(request):
+    query= request.GET.get('query')
+    articles = Article.objects.filter(
+        Q(title__icontains=query) | Q(content__icontains=query)
+    )
+
+    paginator =Paginator(articles, 3)
+    page = request.GET.get('page')
+    article= paignator.get_page(page)
+
+    context={'article': article}
+
+    return render(request, 'articles/search.html', context)

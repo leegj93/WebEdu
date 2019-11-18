@@ -7,7 +7,7 @@
     {% else %}
     <h1>UPDATE</h1>
     {% endif %}
-    <form action="{% url 'articles:create' %}" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
         <!-- form 모듈 사용 -->
         {% bootstrap_form form %}

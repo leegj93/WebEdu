@@ -11,6 +11,18 @@
         <title>django form</title>
     {% endblock %}
     {% bootstrap_css %}
+    <style>
+        body {
+            background: rgba(181, 227, 216, 1);
+        }
+        .search-btn:hover{
+            background: rgba(181, 227, 216, 0.5);
+            color:white
+        }
+        .search-btn:focus{
+            transform:translateY(-2px)
+        }
+    </style>
 </head>
 <body>
     {% include 'articles/_nav.html' %}

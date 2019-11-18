@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     #카카오 추가
     'allauth.socialaccount.providers.kakao',
+    'bootstrap_pagination'
 ]
 
 
